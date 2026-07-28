@@ -1,7 +1,10 @@
 package arrays;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Easy {
 
@@ -22,7 +25,6 @@ public class Easy {
 	}
 
 	// how to improve
-
 	// Two-pass Hash Table
 	public int[] twoSum2(int[] nums, int target) {
 		Map<Integer, Integer> numMap = new HashMap<>();
@@ -43,20 +45,39 @@ public class Easy {
 
 		return new int[]{}; // No solution found
 	}
+	// One-pass Hash Table
+	public int[] twoSum3(int[] nums, int target) {
+		Map<Integer, Integer> numMap = new HashMap<>();
+		int n = nums.length;
+
+		for (int i = 0; i < n; i++) {
+			int complement = target - nums[i];
+			if (numMap.containsKey(complement)) {
+				return new int[]{numMap.get(complement), i};
+			}
+			numMap.put(nums[i], i);
+		}
+
+		return new int[]{}; // No solution found
+	}
 	
-	 public int[] twoSum3(int[] nums, int target) {
-	        Map<Integer, Integer> numMap = new HashMap<>();
-	        int n = nums.length;
+	// my Solution
+	public int removeDuplicates(int[] nums) {
 
-	        for (int i = 0; i < n; i++) {
-	            int complement = target - nums[i];
-	            if (numMap.containsKey(complement)) {
-	                return new int[]{numMap.get(complement), i};
-	            }
-	            numMap.put(nums[i], i);
-	        }
+	    Set<Integer> numSet = new LinkedHashSet<>();
 
-	        return new int[]{}; // No solution found
+	    for (int number : nums) {
+	        numSet.add(number);
 	    }
+
+	    int index = 0;
+
+	    for (int number : numSet) {
+	        nums[index] = number;
+	        index++;
+	    }
+
+	    return index;
+	}
 
 }
