@@ -60,24 +60,57 @@ public class Easy {
 
 		return new int[]{}; // No solution found
 	}
-	
+
 	// my Solution
 	public int removeDuplicates(int[] nums) {
 
-	    Set<Integer> numSet = new LinkedHashSet<>();
+		Set<Integer> numSet = new LinkedHashSet<>();
 
-	    for (int number : nums) {
-	        numSet.add(number);
-	    }
+		for (int number : nums) {
+			numSet.add(number);
+		}
 
-	    int index = 0;
+		int index = 0;
 
-	    for (int number : numSet) {
-	        nums[index] = number;
-	        index++;
-	    }
+		for (int number : numSet) {
+			nums[index] = number;
+			index++;
+		}
 
-	    return index;
+		return index;
 	}
 
+	// my Solution
+	public int removeElement(int[] nums, int val) {
+
+		int countRemovedElements = 0;
+		int n = nums.length;
+		int i = 0;
+
+		while (i < n - countRemovedElements) {
+
+			if (nums[i] == val) {
+				
+				while (i < n - countRemovedElements && nums[n - 1 - countRemovedElements] == val) {
+					countRemovedElements++;
+				}
+
+				if (i < n - countRemovedElements) {
+					int lastIndex = n - 1 - countRemovedElements;
+
+					int tmp = nums[i];
+					nums[i] = nums[lastIndex];
+					nums[lastIndex] = tmp;
+
+					countRemovedElements++;
+				}
+
+			} else {
+				i++;
+			}
+		}
+
+		return n - countRemovedElements;
+	}
+	
 }
