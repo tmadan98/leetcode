@@ -90,7 +90,7 @@ public class Easy {
 		while (i < n - countRemovedElements) {
 
 			if (nums[i] == val) {
-				
+
 				while (i < n - countRemovedElements && nums[n - 1 - countRemovedElements] == val) {
 					countRemovedElements++;
 				}
@@ -112,16 +112,16 @@ public class Easy {
 
 		return n - countRemovedElements;
 	}
-	
+
 	// my Solution
 	public int binarySearch(int[] nums, int low, int high, int target){
-		
-	    if (low > high) {
-	        return low;
-	    }
-		
-	    int middle = low + (high - low) / 2;
-		
+
+		if (low > high) {
+			return low;
+		}
+
+		int middle = low + (high - low) / 2;
+
 		if(nums[middle] == target) {
 			return middle;
 		}else if(nums[middle] > target) {
@@ -130,9 +130,30 @@ public class Easy {
 			return binarySearch(nums, middle + 1, high, target);
 		}
 	}
-	
-    public int searchInsert(int[] nums, int target) { 	
-    	
+
+	public int searchInsert(int[] nums, int target) { 	
+
 		return binarySearch(nums, 0, nums.length - 1, target);
-    }
+	}
+
+	// my Solution
+	public int[] plusOne(int[] digits) {
+
+		int countLastNines = 0;
+
+		while(countLastNines < digits.length && digits[digits.length - countLastNines - 1] == 9)  {
+			digits[digits.length - countLastNines - 1] = 0;
+			countLastNines++;
+		}
+
+		if(digits.length == countLastNines) {
+			int[] result = new int[digits.length + 1];
+			result[0] = 1;
+			return result;
+		}
+
+		digits[digits.length - 1 - countLastNines] += 1;
+
+		return digits;
+	}
 }
