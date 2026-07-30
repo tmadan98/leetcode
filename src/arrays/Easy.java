@@ -113,4 +113,26 @@ public class Easy {
 		return n - countRemovedElements;
 	}
 	
+	// my Solution
+	public int binarySearch(int[] nums, int low, int high, int target){
+		
+	    if (low > high) {
+	        return low;
+	    }
+		
+	    int middle = low + (high - low) / 2;
+		
+		if(nums[middle] == target) {
+			return middle;
+		}else if(nums[middle] > target) {
+			return binarySearch(nums, low, middle - 1, target);
+		}else {
+			return binarySearch(nums, middle + 1, high, target);
+		}
+	}
+	
+    public int searchInsert(int[] nums, int target) { 	
+    	
+		return binarySearch(nums, 0, nums.length - 1, target);
+    }
 }
