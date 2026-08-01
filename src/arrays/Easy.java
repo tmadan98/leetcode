@@ -156,4 +156,32 @@ public class Easy {
 
 		return digits;
 	}
+
+	public void merge(int[] nums1, int m, int[] nums2, int n) {
+		int i = 0;
+		int j = 0;
+		int index = 0;
+
+		int[] tmp = new int[m];
+		System.arraycopy(nums1, 0, tmp, 0, m);
+
+		while (index < nums1.length) {
+
+			if (i >= m) {
+				nums1[index] = nums2[j];
+				j++;
+			} else if (j >= n) {
+				nums1[index] = tmp[i];
+				i++;
+			} else if (tmp[i] < nums2[j]) {
+				nums1[index] = tmp[i];
+				i++;
+			} else {
+				nums1[index] = nums2[j];
+				j++;
+			}
+
+			index++;
+		}
+	}
 }
