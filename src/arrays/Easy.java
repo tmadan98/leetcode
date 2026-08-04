@@ -1,8 +1,10 @@
 package arrays;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -157,6 +159,7 @@ public class Easy {
 		return digits;
 	}
 
+	// my Solution
 	public void merge(int[] nums1, int m, int[] nums2, int n) {
 		int i = 0;
 		int j = 0;
@@ -183,5 +186,27 @@ public class Easy {
 
 			index++;
 		}
+	}
+
+	// my Solution
+	public static List<List<Integer>> generate(int numRows) {
+
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
+
+		for(int i = 1; i < numRows + 1; i++) {
+
+			List<Integer> oneLine = new ArrayList<Integer>();
+
+			for(int j = 0;  j < i; j++) {
+
+				if (i > 2 && j > 0 && j < result.get(i - 2).size()) {
+					oneLine.add(j, result.get(i - 2).get(j - 1) + result.get(i - 2).get(j));
+				} else {
+					oneLine.add(j, 1);
+				}
+			}
+			result.add(oneLine);
+		} 	
+		return result;
 	}
 }
