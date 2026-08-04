@@ -11,7 +11,7 @@ import java.util.Set;
 public class Easy {
 
 
-	// my Solution
+	// my Solution -> 6%
 	public int[] twoSum(int[] nums, int target) {
 
 		for(int i = 0; i < nums.length; i++) {
@@ -26,7 +26,7 @@ public class Easy {
 		return new int[]{};
 	}
 
-	// how to improve
+	// how to improve twoSum -> 100%
 	// Two-pass Hash Table
 	public int[] twoSum2(int[] nums, int target) {
 		Map<Integer, Integer> numMap = new HashMap<>();
@@ -63,7 +63,7 @@ public class Easy {
 		return new int[]{}; // No solution found
 	}
 
-	// my Solution
+	// my Solution -> 100%
 	public int removeDuplicates(int[] nums) {
 
 		Set<Integer> numSet = new LinkedHashSet<>();
@@ -82,7 +82,7 @@ public class Easy {
 		return index;
 	}
 
-	// my Solution
+	// my Solution -> 100%
 	public int removeElement(int[] nums, int val) {
 
 		int countRemovedElements = 0;
@@ -115,7 +115,7 @@ public class Easy {
 		return n - countRemovedElements;
 	}
 
-	// my Solution
+	// my Solution -> 100%
 	public int binarySearch(int[] nums, int low, int high, int target){
 
 		if (low > high) {
@@ -138,7 +138,7 @@ public class Easy {
 		return binarySearch(nums, 0, nums.length - 1, target);
 	}
 
-	// my Solution
+	// my Solution -> 100%
 	public int[] plusOne(int[] digits) {
 
 		int countLastNines = 0;
@@ -159,7 +159,7 @@ public class Easy {
 		return digits;
 	}
 
-	// my Solution
+	// my Solution -> 100%
 	public void merge(int[] nums1, int m, int[] nums2, int n) {
 		int i = 0;
 		int j = 0;
@@ -188,7 +188,7 @@ public class Easy {
 		}
 	}
 
-	// my Solution
+	// my Solution -> 11%
 	public static List<List<Integer>> generate(int numRows) {
 
 		List<List<Integer>> result = new ArrayList<List<Integer>>();
@@ -209,4 +209,32 @@ public class Easy {
 		} 	
 		return result;
 	}
+
+	// how to improve -> generate -> 95%
+	public List<List<Integer>> generate2(int numRows) {
+	    List<List<Integer>> result = new ArrayList<>(numRows);
+
+	    for (int i = 0; i < numRows; i++) {
+	        List<Integer> oneLine = new ArrayList<>(i + 1);
+
+	        for (int j = 0; j <= i; j++) {
+	            if (j == 0 || j == i) {
+	                oneLine.add(1);
+	            } else {
+	                List<Integer> previousLine = result.get(i - 1);
+
+	                int left = previousLine.get(j - 1);
+	                int right = previousLine.get(j);
+
+	                oneLine.add(left + right);
+	            }
+	        }
+
+	        result.add(oneLine);
+	    }
+
+	    return result;
+	}
+
+	
 }
